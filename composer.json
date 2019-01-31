@@ -1,0 +1,52 @@
+{
+  "name": "php-service-bus/messages-router",
+  "description": "Messages router component",
+  "type": "library",
+  "keywords": [
+    "async-php",
+    "command-bus",
+    "messaging"
+  ],
+  "authors": [
+    {
+      "name": "Masiukevich Maksim",
+      "email": "dev@async-php.com",
+      "homepage": "https://github.com/mmasiukevich",
+      "role": "Developer"
+    }
+  ],
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "ServiceBus\\MessagesRouter\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "ServiceBus\\MessagesRouter\\Tests\\": "tests/",
+      "ServiceBus\\Common\\Tests\\": "vendor/php-service-bus/common/tests"
+    }
+  },
+  "require": {
+    "php": ">=7.2",
+    "php-service-bus/common": "dev-master"
+  },
+  "require-dev": {
+    "symfony/dependency-injection": "^v4.2",
+    "phpunit/phpunit": "^7",
+    "vimeo/psalm": "^3"
+  },
+  "prefer-stable": true,
+  "minimum-stability": "dev",
+  "scripts": {
+    "psalm": "./vendor/bin/psalm --config=psalm.xml",
+    "phpunit": "./vendor/bin/phpunit --configuration phpunit.xml --verbose",
+    "coverage": "./vendor/bin/phpunit --configuration phpunit.xml --coverage-html ./coverage --verbose",
+    "test": [
+      "@phpunit"
+    ]
+  },
+  "config": {
+    "optimize-autoloader": true
+  }
+}
