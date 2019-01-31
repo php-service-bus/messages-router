@@ -113,7 +113,7 @@ final class RouterTest extends TestCase
     {
         $handler = new DefaultMessageExecutor();
 
-        $router =new Router;
+        $router = new Router;
 
         static::assertCount(0, $router->match(new TestCommand));
         static::assertCount(0, $router->match(new SecondTestCommand()));
