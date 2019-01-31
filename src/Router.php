@@ -16,7 +16,6 @@ use ServiceBus\Common\MessageExecutor\MessageExecutor;
 use ServiceBus\Common\Messages\Command;
 use ServiceBus\Common\Messages\Event;
 use ServiceBus\Common\Messages\Message;
-use ServiceBus\MessagesRouter\Exceptions\CantAddExecutorToClosedRouter;
 use ServiceBus\MessagesRouter\Exceptions\InvalidCommandClassSpecified;
 use ServiceBus\MessagesRouter\Exceptions\InvalidEventClassSpecified;
 use ServiceBus\MessagesRouter\Exceptions\MultipleCommandHandlersNotAllowed;
@@ -26,11 +25,6 @@ use ServiceBus\MessagesRouter\Exceptions\MultipleCommandHandlersNotAllowed;
  */
 final class Router implements \Countable
 {
-    /**
-     * @var Router
-     */
-    private static $instance;
-
     /**
      * Event listeners
      *
@@ -58,46 +52,6 @@ final class Router implements \Countable
      * @var int
      */
     private $handlersCount = 0;
-
-    /**
-     * Is the router closed to add new handlers?
-     *
-     * @var bool
-     */
-    private $closed = false;
-
-    /**
-     * @return self
-     */
-    public static function instance(): self
-    {
-        if(null === self::$instance)
-        {
-            self::$instance = new self;
-        }
-
-        return self::$instance;
-    }
-
-    /**
-     * Reset singleton instance
-     *
-     * @return void
-     */
-    public function resetInstance(): void
-    {
-        self::$instance = null;
-    }
-
-    /**
-     * Close the ability to add new handlers
-     *
-     * @return void
-     */
-    public function close(): void
-    {
-        $this->closed = true;
-    }
 
     /**
      * @inheritdoc
@@ -156,14 +110,9 @@ final class Router implements \Countable
      * @return void
      *
      * @throws \ServiceBus\MessagesRouter\Exceptions\InvalidEventClassSpecified
-     * @throws \ServiceBus\MessagesRouter\Exceptions\CantAddExecutorToClosedRouter
      */
     public function registerListener($event, MessageExecutor $handler): void
     {
-        if(true === $this->closed)
-        {
-            throw new CantAddExecutorToClosedRouter();
-        }
 
         $eventClass = $event instanceof Event
             ? \get_class($event)
@@ -191,15 +140,9 @@ final class Router implements \Countable
      *
      * @throws \ServiceBus\MessagesRouter\Exceptions\InvalidCommandClassSpecified
      * @throws \ServiceBus\MessagesRouter\Exceptions\MultipleCommandHandlersNotAllowed
-     * @throws \ServiceBus\MessagesRouter\Exceptions\CantAddExecutorToClosedRouter
      */
     public function registerHandler($command, MessageExecutor $handler): void
     {
-        if(true === $this->closed)
-        {
-            throw new CantAddExecutorToClosedRouter();
-        }
-
         $commandClass = $command instanceof Command ? \get_class($command) : (string) $command;
 
         if('' === $commandClass || false === \class_exists($commandClass))
@@ -216,21 +159,5 @@ final class Router implements \Countable
 
         $this->handlers[$commandClass] = $handler;
         $this->handlersCount++;
-    }
-
-    /**
-     * @codeCoverageIgnore
-     */
-    private function __clone()
-    {
-
-    }
-
-    /**
-     * @codeCoverageIgnore
-     */
-    private function __construct()
-    {
-
     }
 }

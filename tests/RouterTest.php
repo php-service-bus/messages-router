@@ -25,16 +25,6 @@ use ServiceBus\MessagesRouter\Tests\stubs\TestEvent;
  */
 final class RouterTest extends TestCase
 {
-    /**
-     * @inheritdoc
-     */
-    protected function tearDown(): void
-    {
-        parent::tearDown();
-
-        Router::instance()->resetInstance();
-    }
-
 
     /**
      * @test
@@ -47,7 +37,7 @@ final class RouterTest extends TestCase
      */
     public function emptyEventClass(): void
     {
-        Router::instance()->registerListener('', new  DefaultMessageExecutor());
+        (new Router)->registerListener('', new  DefaultMessageExecutor());
     }
 
     /**
@@ -61,7 +51,7 @@ final class RouterTest extends TestCase
      */
     public function unExistsEventClass(): void
     {
-        Router::instance()->registerListener('SomeEventClass', new DefaultMessageExecutor());
+        (new Router)->registerListener('SomeEventClass', new DefaultMessageExecutor());
     }
 
     /**
@@ -75,7 +65,7 @@ final class RouterTest extends TestCase
      */
     public function emptyCommandClass(): void
     {
-        Router::instance()->registerHandler('', new DefaultMessageExecutor());
+        (new Router)->registerHandler('', new DefaultMessageExecutor());
     }
 
     /**
@@ -89,7 +79,7 @@ final class RouterTest extends TestCase
      */
     public function unExistsCommandClass(): void
     {
-        Router::instance()->registerHandler('SomeCommandClass', new DefaultMessageExecutor());
+        (new Router)->registerHandler('SomeCommandClass', new DefaultMessageExecutor());
     }
 
     /**
@@ -106,8 +96,10 @@ final class RouterTest extends TestCase
     {
         $handler = new DefaultMessageExecutor();
 
-        Router::instance()->registerHandler(TestCommand::class, $handler);
-        Router::instance()->registerHandler(TestCommand::class, $handler);
+        $router = new Router;
+
+        $router->registerHandler(TestCommand::class, $handler);
+        $router->registerHandler(TestCommand::class, $handler);
     }
 
     /**
@@ -121,9 +113,9 @@ final class RouterTest extends TestCase
     {
         $handler = new DefaultMessageExecutor();
 
-        $router = Router::instance();
+        $router =new Router;
 
-        static::assertCount(0, Router::instance()->match(new TestCommand));
+        static::assertCount(0, $router->match(new TestCommand));
         static::assertCount(0, $router->match(new SecondTestCommand()));
 
         $router->registerHandler(TestCommand::class, $handler);
@@ -142,19 +134,5 @@ final class RouterTest extends TestCase
 
         static::assertCount(1, $router->match(new TestCommand));
         static::assertCount(2, $router->match(new TestEvent));
-    }
-
-    /**
-     * @test
-     * @expectedException \ServiceBus\MessagesRouter\Exceptions\CantAddExecutorToClosedRouter
-     *
-     * @return void
-     *
-     * @throws \Throwable
-     */
-    public function addToClosed(): void
-    {
-        Router::instance()->close();
-        Router::instance()->registerListener(new TestEvent(), new DefaultMessageExecutor());
     }
 }
