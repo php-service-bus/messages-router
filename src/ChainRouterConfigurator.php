@@ -22,6 +22,11 @@ final class ChainRouterConfigurator implements RouterConfigurator
      */
     private $configurators;
 
+    public function __construct()
+    {
+        $this->configurators = new \SplObjectStorage();
+    }
+
     /**
      * @param RouterConfigurator $configurator
      *
