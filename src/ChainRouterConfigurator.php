@@ -24,6 +24,7 @@ final class ChainRouterConfigurator implements RouterConfigurator
 
     public function __construct()
     {
+        /** @psalm-suppress MixedTypeCoercion */
         $this->configurators = new \SplObjectStorage();
     }
 

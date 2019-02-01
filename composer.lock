@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "744aee382885b4a50cf07634ff7569c3",
-    "content-hash": "b5c4753b99fa463ae2b421bc3b3a7180",
+    "hash": "1ccf0b7c4ca73a18a4b1ed6f00483a7f",
+    "content-hash": "5f5ba04bcbdaa16b35a642280b8ca28b",
     "packages": [
         {
             "name": "amphp/amp",
@@ -134,12 +134,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-service-bus/common.git",
-                "reference": "09a30fd3ea001111a7dd231fcb05b9b1d828ebc6"
+                "reference": "7945f503f01e94d083bfb3784e7717922b3ccbe4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-service-bus/common/zipball/09a30fd3ea001111a7dd231fcb05b9b1d828ebc6",
-                "reference": "09a30fd3ea001111a7dd231fcb05b9b1d828ebc6",
+                "url": "https://api.github.com/repos/php-service-bus/common/zipball/7945f503f01e94d083bfb3784e7717922b3ccbe4",
+                "reference": "7945f503f01e94d083bfb3784e7717922b3ccbe4",
                 "shasum": ""
             },
             "require": {
@@ -150,7 +150,7 @@
             "require-dev": {
                 "phpunit/phpunit": "^7",
                 "symfony/dependency-injection": "^v4.2",
-                "vimeo/psalm": "^3"
+                "vimeo/psalm": "dev-master"
             },
             "type": "library",
             "autoload": {
@@ -177,11 +177,9 @@
             "keywords": [
                 "async-php",
                 "command-bus",
-                "cqrs",
-                "event-sourcing",
                 "messaging"
             ],
-            "time": "2019-01-30 16:04:18"
+            "time": "2019-01-31 15:29:38"
         },
         {
             "name": "ramsey/uuid",
@@ -1379,16 +1377,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "7.5.2",
+            "version": "7.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "7c89093bd00f7d5ddf0ab81dee04f801416b4944"
+                "reference": "2cb759721e53bc05f56487f628c6b9fbb6c18746"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/7c89093bd00f7d5ddf0ab81dee04f801416b4944",
-                "reference": "7c89093bd00f7d5ddf0ab81dee04f801416b4944",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2cb759721e53bc05f56487f628c6b9fbb6c18746",
+                "reference": "2cb759721e53bc05f56487f628c6b9fbb6c18746",
                 "shasum": ""
             },
             "require": {
@@ -1459,7 +1457,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2019-01-15 08:19:08"
+            "time": "2019-02-01 05:24:07"
         },
         {
             "name": "psr/container",
@@ -1784,28 +1782,31 @@
         },
         {
             "name": "sebastian/environment",
-            "version": "4.0.2",
+            "version": "4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/environment.git",
-                "reference": "4a43e9af57b4afa663077b9bc85255dbc6e8a2bd"
+                "reference": "6fda8ce1974b62b14935adc02a9ed38252eca656"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/4a43e9af57b4afa663077b9bc85255dbc6e8a2bd",
-                "reference": "4a43e9af57b4afa663077b9bc85255dbc6e8a2bd",
+                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/6fda8ce1974b62b14935adc02a9ed38252eca656",
+                "reference": "6fda8ce1974b62b14935adc02a9ed38252eca656",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1"
             },
             "require-dev": {
-                "phpunit/phpunit": "^7.4"
+                "phpunit/phpunit": "^7.5"
+            },
+            "suggest": {
+                "ext-posix": "*"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.0-dev"
+                    "dev-master": "4.1-dev"
                 }
             },
             "autoload": {
@@ -1830,7 +1831,7 @@
                 "environment",
                 "hhvm"
             ],
-            "time": "2019-01-28 15:26:03"
+            "time": "2019-02-01 05:27:49"
         },
         {
             "name": "sebastian/exporter",
@@ -2491,16 +2492,16 @@
         },
         {
             "name": "vimeo/psalm",
-            "version": "3.0.13",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vimeo/psalm.git",
-                "reference": "0bb5143efd2350bcbb01f06f5374a4c6cf5a7a4b"
+                "reference": "53756e7017cd250b80edbc377a2fa64cd89f9461"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vimeo/psalm/zipball/0bb5143efd2350bcbb01f06f5374a4c6cf5a7a4b",
-                "reference": "0bb5143efd2350bcbb01f06f5374a4c6cf5a7a4b",
+                "url": "https://api.github.com/repos/vimeo/psalm/zipball/53756e7017cd250b80edbc377a2fa64cd89f9461",
+                "reference": "53756e7017cd250b80edbc377a2fa64cd89f9461",
                 "shasum": ""
             },
             "require": {
@@ -2564,7 +2565,7 @@
                 "inspection",
                 "php"
             ],
-            "time": "2019-01-29 15:34:31"
+            "time": "2019-02-01 02:18:00"
         },
         {
             "name": "webmozart/assert",
@@ -2714,7 +2715,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "php-service-bus/common": 20
+        "php-service-bus/common": 20,
+        "vimeo/psalm": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

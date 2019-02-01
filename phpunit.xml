@@ -15,12 +15,12 @@
 
     <testsuites>
 
-        <testsuite name="Messages router component">
-            <directory>./tests</directory>
-        </testsuite>
-
         <testsuite name="Common component">
             <directory>./vendor/php-service-bus/common/tests</directory>
+        </testsuite>
+
+        <testsuite name="Messages router">
+            <directory>./tests</directory>
         </testsuite>
 
     </testsuites>

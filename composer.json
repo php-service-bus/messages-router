@@ -23,8 +23,8 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "ServiceBus\\MessagesRouter\\Tests\\": "tests/",
-      "ServiceBus\\Common\\Tests\\": "vendor/php-service-bus/common/tests"
+      "ServiceBus\\Common\\Tests\\": "vendor/php-service-bus/common/tests",
+      "ServiceBus\\MessagesRouter\\Tests\\": "tests/"
     }
   },
   "require": {
@@ -34,7 +34,7 @@
   "require-dev": {
     "symfony/dependency-injection": "^v4.2",
     "phpunit/phpunit": "^7",
-    "vimeo/psalm": "^3"
+    "vimeo/psalm": "dev-master"
   },
   "prefer-stable": true,
   "minimum-stability": "dev",

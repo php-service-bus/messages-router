@@ -2,6 +2,7 @@
 <psalm
         totallyTyped="true"
         useDocblockTypes="true"
+        useDocblockPropertyTypes="true"
         allowPhpStormGenerics="true"
         requireVoidReturnType="true"
         ignoreInternalFunctionFalseReturn="false"
