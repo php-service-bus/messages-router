@@ -29,12 +29,12 @@
   },
   "require": {
     "php": ">=7.2",
-    "php-service-bus/common": "dev-master"
+    "php-service-bus/common": "^v3.0"
   },
   "require-dev": {
     "symfony/dependency-injection": "^v4.2",
     "phpunit/phpunit": "^7",
-    "vimeo/psalm": "dev-master"
+    "vimeo/psalm": "^v3"
   },
   "prefer-stable": true,
   "minimum-stability": "dev",
