@@ -13,6 +13,9 @@ declare(strict_types = 1);
 namespace ServiceBus\MessagesRouter\Tests;
 
 use PHPUnit\Framework\TestCase;
+use ServiceBus\MessagesRouter\Exceptions\InvalidCommandClassSpecified;
+use ServiceBus\MessagesRouter\Exceptions\InvalidEventClassSpecified;
+use ServiceBus\MessagesRouter\Exceptions\MultipleCommandHandlersNotAllowed;
 use ServiceBus\MessagesRouter\Router;
 use ServiceBus\MessagesRouter\Tests\stubs\DefaultMessageExecutor;
 use ServiceBus\MessagesRouter\Tests\stubs\SecondTestCommand;
@@ -28,8 +31,6 @@ final class RouterTest extends TestCase
 
     /**
      * @test
-     * @expectedException \ServiceBus\MessagesRouter\Exceptions\InvalidEventClassSpecified
-     * @expectedExceptionMessage The event class is not specified, or does not exist
      *
      * @return void
      *
@@ -37,13 +38,14 @@ final class RouterTest extends TestCase
      */
     public function emptyEventClass(): void
     {
+        $this->expectException(InvalidEventClassSpecified::class);
+        $this->expectExceptionMessage('The event class is not specified, or does not exist');
+
         (new Router)->registerListener('', new  DefaultMessageExecutor());
     }
 
     /**
      * @test
-     * @expectedException \ServiceBus\MessagesRouter\Exceptions\InvalidEventClassSpecified
-     * @expectedExceptionMessage The event class is not specified, or does not exist
      *
      * @return void
      *
@@ -51,13 +53,14 @@ final class RouterTest extends TestCase
      */
     public function unExistsEventClass(): void
     {
+        $this->expectException(InvalidEventClassSpecified::class);
+        $this->expectExceptionMessage('The event class is not specified, or does not exist');
+
         (new Router)->registerListener('SomeEventClass', new DefaultMessageExecutor());
     }
 
     /**
      * @test
-     * @expectedException \ServiceBus\MessagesRouter\Exceptions\InvalidCommandClassSpecified
-     * @expectedExceptionMessage The command class is not specified, or does not exist
      *
      * @return void
      *
@@ -65,13 +68,14 @@ final class RouterTest extends TestCase
      */
     public function emptyCommandClass(): void
     {
+        $this->expectException(InvalidCommandClassSpecified::class);
+        $this->expectExceptionMessage('The command class is not specified, or does not exist');
+
         (new Router)->registerHandler('', new DefaultMessageExecutor());
     }
 
     /**
      * @test
-     * @expectedException \ServiceBus\MessagesRouter\Exceptions\InvalidCommandClassSpecified
-     * @expectedExceptionMessage The command class is not specified, or does not exist
      *
      * @return void
      *
@@ -79,14 +83,14 @@ final class RouterTest extends TestCase
      */
     public function unExistsCommandClass(): void
     {
+        $this->expectException(InvalidCommandClassSpecified::class);
+        $this->expectExceptionMessage('The command class is not specified, or does not exist');
+
         (new Router)->registerHandler('SomeCommandClass', new DefaultMessageExecutor());
     }
 
     /**
      * @test
-     * @expectedException \ServiceBus\MessagesRouter\Exceptions\MultipleCommandHandlersNotAllowed
-     * @expectedExceptionMessage A handler has already been registered for the
-     *                           "ServiceBus\Tests\Stubs\Messages\FirstEmptyCommand" command
      *
      * @return void
      *
@@ -94,6 +98,11 @@ final class RouterTest extends TestCase
      */
     public function duplicateCommand(): void
     {
+        $this->expectException(MultipleCommandHandlersNotAllowed::class);
+        $this->expectExceptionMessage(\sprintf(
+            'A handler has already been registered for the "%s" command', TestCommand::class
+        ));
+
         $handler = new DefaultMessageExecutor();
 
         $router = new Router;
