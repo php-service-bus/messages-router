@@ -13,9 +13,6 @@ declare(strict_types = 1);
 namespace ServiceBus\MessagesRouter;
 
 use ServiceBus\Common\MessageExecutor\MessageExecutor;
-use ServiceBus\Common\Messages\Command;
-use ServiceBus\Common\Messages\Event;
-use ServiceBus\Common\Messages\Message;
 use ServiceBus\MessagesRouter\Exceptions\InvalidCommandClassSpecified;
 use ServiceBus\MessagesRouter\Exceptions\InvalidEventClassSpecified;
 use ServiceBus\MessagesRouter\Exceptions\MultipleCommandHandlersNotAllowed;
@@ -82,29 +79,32 @@ final class Router implements \Countable
     }
 
     /**
-     * @param Message $message
+     * @param object $message
      *
      * @return array<array-key, \ServiceBus\Common\MessageExecutor\MessageExecutor>
      */
-    public function match(Message $message): array
+    public function match(object $message): array
     {
         $messageClass = \get_class($message);
 
-        if($message instanceof Event)
+        if(true === isset($this->listeners[$messageClass]))
         {
-            return $this->listeners[$messageClass] ?? [];
+            return $this->listeners[$messageClass];
         }
 
-        return true === isset($this->handlers[$messageClass])
-            ? [$this->handlers[$messageClass]]
-            : [];
+        if(true === isset($this->handlers[$messageClass]))
+        {
+            return [$this->handlers[$messageClass]];
+        }
+
+        return [];
     }
 
     /**
      * Add event listener
      * For each event there can be many listeners
      *
-     * @param Event|string    $event Event object or class
+     * @param object|string   $event Event object or class
      * @param MessageExecutor $handler
      *
      * @return void
@@ -114,9 +114,7 @@ final class Router implements \Countable
     public function registerListener($event, MessageExecutor $handler): void
     {
 
-        $eventClass = $event instanceof Event
-            ? \get_class($event)
-            : (string) $event;
+        $eventClass = true === \is_object($event) ? \get_class($event) : (string) $event;
 
         if('' !== $eventClass && true === \class_exists($eventClass))
         {
@@ -126,14 +124,14 @@ final class Router implements \Countable
             return;
         }
 
-        throw new InvalidEventClassSpecified('The event class is not specified, or does not exist');
+        throw InvalidEventClassSpecified::wrongEventClass();
     }
 
     /**
      * Register command handler
      * For 1 command there can be only 1 handler
      *
-     * @param Command|string  $command Command object or class
+     * @param object|string   $command Command object or class
      * @param MessageExecutor $handler
      *
      * @return void
@@ -143,18 +141,16 @@ final class Router implements \Countable
      */
     public function registerHandler($command, MessageExecutor $handler): void
     {
-        $commandClass = $command instanceof Command ? \get_class($command) : (string) $command;
+        $commandClass = true === \is_object($command) ? \get_class($command) : (string) $command;
 
         if('' === $commandClass || false === \class_exists($commandClass))
         {
-            throw new InvalidCommandClassSpecified('The command class is not specified, or does not exist');
+            throw InvalidCommandClassSpecified::wrongCommandClass();
         }
 
         if(true === isset($this->handlers[$commandClass]))
         {
-            throw new MultipleCommandHandlersNotAllowed(
-                \sprintf('A handler has already been registered for the "%s" command', $commandClass)
-            );
+            throw MultipleCommandHandlersNotAllowed::duplicate($commandClass);
         }
 
         $this->handlers[$commandClass] = $handler;

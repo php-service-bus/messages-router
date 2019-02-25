@@ -12,12 +12,10 @@ declare(strict_types = 1);
 
 namespace ServiceBus\MessagesRouter\Tests\stubs;
 
-use ServiceBus\Common\Messages\Command;
-
 /**
  *
  */
-final class TestCommand implements Command
+final class TestCommand
 {
 
 }

@@ -12,12 +12,10 @@ declare(strict_types = 1);
 
 namespace ServiceBus\MessagesRouter\Tests\stubs;
 
-use ServiceBus\Common\Messages\Event;
-
 /**
  *
  */
-final class TestEvent implements Event
+final class TestEvent
 {
 
 }
