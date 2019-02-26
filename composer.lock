@@ -134,12 +134,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-service-bus/common.git",
-                "reference": "dc30e3c39819ef8ae870255dddada0cae759abb4"
+                "reference": "d3b1b081a08e2656dcdb4ccb242b4e18abe74bdf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-service-bus/common/zipball/dc30e3c39819ef8ae870255dddada0cae759abb4",
-                "reference": "dc30e3c39819ef8ae870255dddada0cae759abb4",
+                "url": "https://api.github.com/repos/php-service-bus/common/zipball/d3b1b081a08e2656dcdb4ccb242b4e18abe74bdf",
+                "reference": "d3b1b081a08e2656dcdb4ccb242b4e18abe74bdf",
                 "shasum": ""
             },
             "require": {
@@ -179,7 +179,7 @@
                 "command-bus",
                 "messaging"
             ],
-            "time": "2019-02-25 13:48:55"
+            "time": "2019-02-26 07:22:23"
         },
         {
             "name": "ramsey/uuid",

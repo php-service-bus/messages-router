@@ -25,14 +25,16 @@ final class Router implements \Countable
     /**
      * Event listeners
      *
-     * @var array<string, array<string|int, \ServiceBus\Common\MessageExecutor\MessageExecutor>>
+     * @psalm-var array<string, array<string|int, \ServiceBus\Common\MessageExecutor\MessageExecutor>>
+     * @var array
      */
     private $listeners;
 
     /**
      * Command handlers
      *
-     * @var array<string, \ServiceBus\Common\MessageExecutor\MessageExecutor>
+     * @psalm-var array<string, \ServiceBus\Common\MessageExecutor\MessageExecutor>
+     * @var array
      */
     private $handlers;
 
@@ -81,7 +83,8 @@ final class Router implements \Countable
     /**
      * @param object $message
      *
-     * @return array<array-key, \ServiceBus\Common\MessageExecutor\MessageExecutor>
+     * @psalm-return array<array-key, \ServiceBus\Common\MessageExecutor\MessageExecutor>
+     * @return array
      */
     public function match(object $message): array
     {
