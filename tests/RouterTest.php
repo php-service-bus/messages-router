@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Messages router component
+ * Messages router component.
  *
  * @author  Maksim Masiukevich <dev@async-php.com>
  * @license MIT
@@ -28,84 +28,84 @@ use ServiceBus\MessagesRouter\Tests\stubs\TestEvent;
  */
 final class RouterTest extends TestCase
 {
-
     /**
      * @test
      *
-     * @return void
-     *
      * @throws \Throwable
+     *
+     * @return void
      */
     public function emptyEventClass(): void
     {
         $this->expectException(InvalidEventClassSpecified::class);
         $this->expectExceptionMessage('The event class is not specified, or does not exist');
 
-        (new Router)->registerListener('', new  DefaultMessageExecutor());
+        (new Router())->registerListener('', new  DefaultMessageExecutor());
     }
 
     /**
      * @test
      *
-     * @return void
-     *
      * @throws \Throwable
+     *
+     * @return void
      */
     public function unExistsEventClass(): void
     {
         $this->expectException(InvalidEventClassSpecified::class);
         $this->expectExceptionMessage('The event class is not specified, or does not exist');
 
-        (new Router)->registerListener('SomeEventClass', new DefaultMessageExecutor());
+        (new Router())->registerListener('SomeEventClass', new DefaultMessageExecutor());
     }
 
     /**
      * @test
      *
-     * @return void
-     *
      * @throws \Throwable
+     *
+     * @return void
      */
     public function emptyCommandClass(): void
     {
         $this->expectException(InvalidCommandClassSpecified::class);
         $this->expectExceptionMessage('The command class is not specified, or does not exist');
 
-        (new Router)->registerHandler('', new DefaultMessageExecutor());
+        (new Router())->registerHandler('', new DefaultMessageExecutor());
     }
 
     /**
      * @test
      *
-     * @return void
-     *
      * @throws \Throwable
+     *
+     * @return void
      */
     public function unExistsCommandClass(): void
     {
         $this->expectException(InvalidCommandClassSpecified::class);
         $this->expectExceptionMessage('The command class is not specified, or does not exist');
 
-        (new Router)->registerHandler('SomeCommandClass', new DefaultMessageExecutor());
+        (new Router())->registerHandler('SomeCommandClass', new DefaultMessageExecutor());
     }
 
     /**
      * @test
      *
-     * @return void
-     *
      * @throws \Throwable
+     *
+     * @return void
      */
     public function duplicateCommand(): void
     {
         $this->expectException(MultipleCommandHandlersNotAllowed::class);
         $this->expectExceptionMessage(\sprintf(
-            'A handler has already been registered for the "%s" command', TestCommand::class
+            'A handler has already been registered for the "%s" command',
+            TestCommand::class
         ));
 
         $handler = new DefaultMessageExecutor();
 
-        $router = new Router;
+        $router = new Router();
 
         $router->registerHandler(TestCommand::class, $handler);
         $router->registerHandler(TestCommand::class, $handler);
@@ -114,17 +114,17 @@ final class RouterTest extends TestCase
     /**
      * @test
      *
-     * @return void
-     *
      * @throws \Throwable
+     *
+     * @return void
      */
     public function successRegister(): void
     {
         $handler = new DefaultMessageExecutor();
 
-        $router = new Router;
+        $router = new Router();
 
-        static::assertCount(0, $router->match(new TestCommand));
+        static::assertCount(0, $router->match(new TestCommand()));
         static::assertCount(0, $router->match(new SecondTestCommand()));
 
         $router->registerHandler(TestCommand::class, $handler);
@@ -141,7 +141,7 @@ final class RouterTest extends TestCase
         static::assertSame(1, $router->handlersCount());
         static::assertCount(4, $router);
 
-        static::assertCount(1, $router->match(new TestCommand));
-        static::assertCount(2, $router->match(new TestEvent));
+        static::assertCount(1, $router->match(new TestCommand()));
+        static::assertCount(2, $router->match(new TestEvent()));
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Messages router component
+ * Messages router component.
  *
  * @author  Maksim Masiukevich <dev@async-php.com>
  * @license MIT
@@ -19,6 +19,7 @@ final class ChainRouterConfigurator implements RouterConfigurator
 {
     /**
      * @psalm-var \SplObjectStorage<\ServiceBus\MessagesRouter\RouterConfigurator, string>
+     *
      * @var \SplObjectStorage
      */
     private $configurators;
@@ -36,19 +37,19 @@ final class ChainRouterConfigurator implements RouterConfigurator
      */
     public function addConfigurator(RouterConfigurator $configurator): void
     {
-        if(false === $this->configurators->contains($configurator))
+        if (false === $this->configurators->contains($configurator))
         {
             $this->configurators->attach($configurator);
         }
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function configure(Router $router): void
     {
         /** @var \ServiceBus\MessagesRouter\RouterConfigurator $configurator */
-        foreach($this->configurators as $configurator)
+        foreach ($this->configurators as $configurator)
         {
             $configurator->configure($router);
         }

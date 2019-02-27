@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Messages router component
+ * Messages router component.
  *
  * @author  Maksim Masiukevich <dev@async-php.com>
  * @license MIT
@@ -23,7 +23,7 @@ use ServiceBus\Common\MessageExecutor\MessageExecutor;
 final class DefaultMessageExecutor implements MessageExecutor
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function __invoke(object $message, ServiceBusContext $context): Promise
     {

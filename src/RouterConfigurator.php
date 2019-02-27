@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Messages router component
+ * Messages router component.
  *
  * @author  Maksim Masiukevich <dev@async-php.com>
  * @license MIT
@@ -18,13 +18,13 @@ namespace ServiceBus\MessagesRouter;
 interface RouterConfigurator
 {
     /**
-     * Configure message routes
+     * Configure message routes.
      *
      * @param Router $router
      *
-     * @return void
-     *
      * @throws \ServiceBus\MessagesRouter\Exceptions\MessageRouterConfigurationFailed
+     *
+     * @return void
      */
     public function configure(Router $router): void;
 }
