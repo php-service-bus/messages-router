@@ -13,7 +13,7 @@ declare(strict_types = 1);
 namespace ServiceBus\MessagesRouter;
 
 /**
- *
+ * Chaim routing configurator.
  */
 final class ChainRouterConfigurator implements RouterConfigurator
 {
