@@ -17,11 +17,6 @@ namespace ServiceBus\MessagesRouter\Exceptions;
  */
 final class MultipleCommandHandlersNotAllowed extends \LogicException
 {
-    /**
-     * @param string $commandClass
-     *
-     * @return self
-     */
     public static function duplicate(string $commandClass): self
     {
         return new self(\sprintf('A handler has already been registered for the "%s" command', $commandClass));

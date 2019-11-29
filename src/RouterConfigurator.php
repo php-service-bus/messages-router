@@ -20,11 +20,7 @@ interface RouterConfigurator
     /**
      * Configure message routes.
      *
-     * @param Router $router
-     *
      * @throws \ServiceBus\MessagesRouter\Exceptions\MessageRouterConfigurationFailed
-     *
-     * @return void
      */
     public function configure(Router $router): void;
 }

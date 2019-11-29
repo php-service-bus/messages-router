@@ -32,8 +32,6 @@ final class RouterTest extends TestCase
      * @test
      *
      * @throws \Throwable
-     *
-     * @return void
      */
     public function emptyEventClass(): void
     {
@@ -47,8 +45,6 @@ final class RouterTest extends TestCase
      * @test
      *
      * @throws \Throwable
-     *
-     * @return void
      */
     public function unExistsEventClass(): void
     {
@@ -62,8 +58,6 @@ final class RouterTest extends TestCase
      * @test
      *
      * @throws \Throwable
-     *
-     * @return void
      */
     public function emptyCommandClass(): void
     {
@@ -77,8 +71,6 @@ final class RouterTest extends TestCase
      * @test
      *
      * @throws \Throwable
-     *
-     * @return void
      */
     public function unExistsCommandClass(): void
     {
@@ -92,8 +84,6 @@ final class RouterTest extends TestCase
      * @test
      *
      * @throws \Throwable
-     *
-     * @return void
      */
     public function duplicateCommand(): void
     {
@@ -115,8 +105,6 @@ final class RouterTest extends TestCase
      * @test
      *
      * @throws \Throwable
-     *
-     * @return void
      */
     public function successRegister(): void
     {

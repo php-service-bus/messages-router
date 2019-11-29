@@ -17,9 +17,6 @@ namespace ServiceBus\MessagesRouter\Exceptions;
  */
 final class InvalidEventClassSpecified extends \LogicException
 {
-    /**
-     * @return self
-     */
     public static function wrongEventClass(): self
     {
         return new self('The event class is not specified, or does not exist');

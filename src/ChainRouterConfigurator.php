@@ -19,22 +19,15 @@ final class ChainRouterConfigurator implements RouterConfigurator
 {
     /**
      * @psalm-var \SplObjectStorage<\ServiceBus\MessagesRouter\RouterConfigurator, string>
-     *
-     * @var \SplObjectStorage
      */
-    private $configurators;
+    private \SplObjectStorage $configurators;
 
     public function __construct()
     {
-        /** @psalm-suppress MixedTypeCoercion */
+        /** @psalm-suppress PropertyTypeCoercion */
         $this->configurators = new \SplObjectStorage();
     }
 
-    /**
-     * @param RouterConfigurator $configurator
-     *
-     * @return void
-     */
     public function addConfigurator(RouterConfigurator $configurator): void
     {
         if (false === $this->configurators->contains($configurator))

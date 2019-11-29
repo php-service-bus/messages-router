@@ -26,33 +26,29 @@ final class Router implements \Countable
      * Event listeners.
      *
      * @psalm-var array<string, array<string|int, \ServiceBus\Common\MessageExecutor\MessageExecutor>>
-     *
-     * @var array
      */
-    private $listeners;
+    private array
+
+ $listeners;
 
     /**
      * Command handlers.
      *
      * @psalm-var array<string, \ServiceBus\Common\MessageExecutor\MessageExecutor>
-     *
-     * @var array
      */
-    private $handlers;
+    private array
+
+ $handlers;
 
     /**
      * Event listeners count.
-     *
-     * @var int
      */
-    private $listenersCount = 0;
+    private int $listenersCount = 0;
 
     /**
      * Command handlers count.
-     *
-     * @var int
      */
-    private $handlersCount = 0;
+    private int $handlersCount = 0;
 
     /**
      * {@inheritdoc}
@@ -64,8 +60,6 @@ final class Router implements \Countable
 
     /**
      * Get registered listeners count.
-     *
-     * @return int
      */
     public function listenersCount(): int
     {
@@ -74,8 +68,6 @@ final class Router implements \Countable
 
     /**
      * Get registered handlers count.
-     *
-     * @return int
      */
     public function handlersCount(): int
     {
@@ -86,8 +78,6 @@ final class Router implements \Countable
      * @param object $message
      *
      * @psalm-return array<array-key, \ServiceBus\Common\MessageExecutor\MessageExecutor>
-     *
-     * @return array
      */
     public function match(object $message): array
     {
@@ -111,11 +101,8 @@ final class Router implements \Countable
      * For each event there can be many listeners.
      *
      * @param object|string   $event Event object or class
-     * @param MessageExecutor $handler
      *
      * @throws \ServiceBus\MessagesRouter\Exceptions\InvalidEventClassSpecified
-     *
-     * @return void
      */
     public function registerListener($event, MessageExecutor $handler): void
     {
@@ -137,12 +124,9 @@ final class Router implements \Countable
      * For 1 command there can be only 1 handler.
      *
      * @param object|string   $command Command object or class
-     * @param MessageExecutor $handler
      *
      * @throws \ServiceBus\MessagesRouter\Exceptions\InvalidCommandClassSpecified
      * @throws \ServiceBus\MessagesRouter\Exceptions\MultipleCommandHandlersNotAllowed
-     *
-     * @return void
      */
     public function registerHandler($command, MessageExecutor $handler): void
     {
