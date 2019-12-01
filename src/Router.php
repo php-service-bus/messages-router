@@ -27,18 +27,14 @@ final class Router implements \Countable
      *
      * @psalm-var array<string, array<string|int, \ServiceBus\Common\MessageExecutor\MessageExecutor>>
      */
-    private array
-
- $listeners;
+    private array $listeners;
 
     /**
      * Command handlers.
      *
      * @psalm-var array<string, \ServiceBus\Common\MessageExecutor\MessageExecutor>
      */
-    private array
-
- $handlers;
+    private array $handlers;
 
     /**
      * Event listeners count.

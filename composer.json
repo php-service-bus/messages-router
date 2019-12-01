@@ -32,7 +32,7 @@
     "php-service-bus/common": "v4.0.*"
   },
   "require-dev": {
-    "php-service-bus/code-style-config": "v1.1.*",
+    "php-service-bus/code-style-config": "v1.2.*",
     "symfony/dependency-injection": "v5.0.*",
     "phpunit/phpunit": "v8.4.*",
     "vimeo/psalm": "v3.7.*",
