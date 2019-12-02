@@ -17,20 +17,16 @@ namespace ServiceBus\MessagesRouter;
  */
 final class ChainRouterConfigurator implements RouterConfigurator
 {
-    /**
-     * @psalm-var \SplObjectStorage<\ServiceBus\MessagesRouter\RouterConfigurator, string>
-     */
     private \SplObjectStorage $configurators;
 
     public function __construct()
     {
-        /** @psalm-suppress PropertyTypeCoercion */
         $this->configurators = new \SplObjectStorage();
     }
 
     public function addConfigurator(RouterConfigurator $configurator): void
     {
-        if (false === $this->configurators->contains($configurator))
+        if ($this->configurators->contains($configurator) === false)
         {
             $this->configurators->attach($configurator);
         }
