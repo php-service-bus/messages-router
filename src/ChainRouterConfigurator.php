@@ -17,7 +17,8 @@ namespace ServiceBus\MessagesRouter;
  */
 final class ChainRouterConfigurator implements RouterConfigurator
 {
-    private \SplObjectStorage $configurators;
+    /** @var \SplObjectStorage  */
+    private $configurators;
 
     public function __construct()
     {
