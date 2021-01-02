@@ -18,7 +18,8 @@ namespace ServiceBus\MessagesRouter;
 final class ChainRouterConfigurator implements RouterConfigurator
 {
     /**
-     * @var \SplObjectStorage<RouterConfigurator, mixed>
+     * @var \SplObjectStorage
+     * @psalm-var \SplObjectStorage<RouterConfigurator, mixed>
      */
     private $configurators;
 
@@ -32,7 +33,7 @@ final class ChainRouterConfigurator implements RouterConfigurator
 
     public function addConfigurator(RouterConfigurator $configurator): void
     {
-        if ($this->configurators->contains($configurator) === false)
+        if($this->configurators->contains($configurator) === false)
         {
             $this->configurators->attach($configurator);
         }
@@ -44,7 +45,7 @@ final class ChainRouterConfigurator implements RouterConfigurator
     public function configure(Router $router): void
     {
         /** @var \ServiceBus\MessagesRouter\RouterConfigurator $configurator */
-        foreach ($this->configurators as $configurator)
+        foreach($this->configurators as $configurator)
         {
             $configurator->configure($router);
         }
