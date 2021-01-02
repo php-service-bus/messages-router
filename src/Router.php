@@ -87,12 +87,12 @@ final class Router implements \Countable
     {
         $messageClass = \get_class($message);
 
-        if (isset($this->listeners[$messageClass]) === true)
+        if (isset($this->listeners[$messageClass]))
         {
             return $this->listeners[$messageClass];
         }
 
-        if (isset($this->handlers[$messageClass]) === true)
+        if (isset($this->handlers[$messageClass]))
         {
             return [$this->handlers[$messageClass]];
         }
@@ -108,11 +108,11 @@ final class Router implements \Countable
      *
      * @throws \ServiceBus\MessagesRouter\Exceptions\InvalidEventClassSpecified
      */
-    public function registerListener($event, MessageExecutor $handler): void
+    public function registerListener(object|string $event, MessageExecutor $handler): void
     {
-        $eventClass = \is_object($event) === true ? \get_class($event) : (string) $event;
+        $eventClass = \is_object($event) ? \get_class($event) : $event;
 
-        if ($eventClass !== '' && \class_exists($eventClass) === true)
+        if ($eventClass !== '' && \class_exists($eventClass))
         {
             $this->listeners[$eventClass][] = $handler;
             $this->listenersCount++;
@@ -132,16 +132,16 @@ final class Router implements \Countable
      * @throws \ServiceBus\MessagesRouter\Exceptions\InvalidCommandClassSpecified
      * @throws \ServiceBus\MessagesRouter\Exceptions\MultipleCommandHandlersNotAllowed
      */
-    public function registerHandler($command, MessageExecutor $handler): void
+    public function registerHandler(object|string $command, MessageExecutor $handler): void
     {
-        $commandClass = \is_object($command) === true ? \get_class($command) : (string) $command;
+        $commandClass = \is_object($command) ? \get_class($command) : $command;
 
         if ($commandClass === '' || \class_exists($commandClass) === false)
         {
             throw InvalidCommandClassSpecified::wrongCommandClass();
         }
 
-        if (isset($this->handlers[$commandClass]) === true)
+        if (isset($this->handlers[$commandClass]))
         {
             throw MultipleCommandHandlersNotAllowed::duplicate($commandClass);
         }

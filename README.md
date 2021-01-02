@@ -1,7 +1,8 @@
 ## What is it?
-[![Build Status](https://travis-ci.org/php-service-bus/messages-router.svg?branch=v4.1)](https://travis-ci.org/php-service-bus/messages-router)
-[![Code Coverage](https://scrutinizer-ci.com/g/php-service-bus/messages-router/badges/coverage.png?b=v4.1)](https://scrutinizer-ci.com/g/php-service-bus/messages-router/?branch=v4.1)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/php-service-bus/messages-router/badges/quality-score.png?b=v4.1)](https://scrutinizer-ci.com/g/php-service-bus/messages-router/?branch=v4.1)
+![Continuous Integration](https://github.com/php-service-bus/messages-router/workflows/Continuous%20Integration/badge.svg)
+[![Shepherd](https://shepherd.dev/github/php-service-bus/messages-router/coverage.svg)](https://shepherd.dev/github/php-service-bus/messages-router)
+[![Code Coverage](https://scrutinizer-ci.com/g/php-service-bus/messages-router/badges/coverage.png?b=v4.2)](https://scrutinizer-ci.com/g/php-service-bus/messages-router/?branch=v4.2)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/php-service-bus/messages-router/badges/quality-score.png?b=v4.2)](https://scrutinizer-ci.com/g/php-service-bus/messages-router/?branch=v4.2)
 
 This component is part of the [PHP Service Bus](https://github.com/php-service-bus/service-bus): implementation of message routing
 
