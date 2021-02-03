@@ -112,24 +112,24 @@ final class RouterTest extends TestCase
 
         $router = new Router();
 
-        static::assertCount(0, $router->match(new TestCommand()));
-        static::assertCount(0, $router->match(new SecondTestCommand()));
+        self::assertCount(0, $router->match(new TestCommand()));
+        self::assertCount(0, $router->match(new SecondTestCommand()));
 
         $router->registerHandler(TestCommand::class, $handler);
 
-        static::assertCount(1, $router);
-        static::assertSame(0, $router->listenersCount());
-        static::assertSame(1, $router->handlersCount());
+        self::assertCount(1, $router);
+        self::assertSame(0, $router->listenersCount());
+        self::assertSame(1, $router->handlersCount());
 
         $router->registerListener(TestEvent::class, $handler);
         $router->registerListener(TestEvent::class, $handler);
         $router->registerListener(SecondTestEvent::class, $handler);
 
-        static::assertSame(3, $router->listenersCount());
-        static::assertSame(1, $router->handlersCount());
-        static::assertCount(4, $router);
+        self::assertSame(3, $router->listenersCount());
+        self::assertSame(1, $router->handlersCount());
+        self::assertCount(4, $router);
 
-        static::assertCount(1, $router->match(new TestCommand()));
-        static::assertCount(2, $router->match(new TestEvent()));
+        self::assertCount(1, $router->match(new TestCommand()));
+        self::assertCount(2, $router->match(new TestEvent()));
     }
 }
