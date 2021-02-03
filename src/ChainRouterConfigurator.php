@@ -3,12 +3,12 @@
 /**
  * Messages router component.
  *
- * @author  Maksim Masiukevich <dev@async-php.com>
+ * @author  Maksim Masiukevich <contacts@desperado.dev>
  * @license MIT
  * @license https://opensource.org/licenses/MIT
  */
 
-declare(strict_types = 1);
+declare(strict_types = 0);
 
 namespace ServiceBus\MessagesRouter;
 
@@ -18,8 +18,9 @@ namespace ServiceBus\MessagesRouter;
 final class ChainRouterConfigurator implements RouterConfigurator
 {
     /**
-     * @var \SplObjectStorage
      * @psalm-var \SplObjectStorage<RouterConfigurator, mixed>
+     *
+     * @var \SplObjectStorage
      */
     private $configurators;
 
@@ -39,9 +40,6 @@ final class ChainRouterConfigurator implements RouterConfigurator
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configure(Router $router): void
     {
         /** @var \ServiceBus\MessagesRouter\RouterConfigurator $configurator */

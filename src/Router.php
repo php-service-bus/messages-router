@@ -3,12 +3,12 @@
 /**
  * Messages router component.
  *
- * @author  Maksim Masiukevich <dev@async-php.com>
+ * @author  Maksim Masiukevich <contacts@desperado.dev>
  * @license MIT
  * @license https://opensource.org/licenses/MIT
  */
 
-declare(strict_types = 1);
+declare(strict_types = 0);
 
 namespace ServiceBus\MessagesRouter;
 
@@ -25,7 +25,7 @@ final class Router implements \Countable
     /**
      * Event listeners.
      *
-     * @psalm-var array<string, array<string|int, \ServiceBus\Common\MessageExecutor\MessageExecutor>>
+     * @psalm-var array<string, array<class-string|int, \ServiceBus\Common\MessageExecutor\MessageExecutor>>
      *
      * @var MessageExecutor[][]
      */
@@ -34,7 +34,7 @@ final class Router implements \Countable
     /**
      * Command handlers.
      *
-     * @psalm-var array<string, \ServiceBus\Common\MessageExecutor\MessageExecutor>
+     * @psalm-var array<class-string, \ServiceBus\Common\MessageExecutor\MessageExecutor>
      *
      * @var MessageExecutor[]
      */
@@ -54,9 +54,6 @@ final class Router implements \Countable
      */
     private $handlersCount = 0;
 
-    /**
-     * {@inheritdoc}
-     */
     public function count(): int
     {
         return $this->handlersCount + $this->listenersCount;
@@ -104,7 +101,7 @@ final class Router implements \Countable
      * Add event listener
      * For each event there can be many listeners.
      *
-     * @param object|string $event Event object or class
+     * @psalm-param object|class-string $event Event object or class
      *
      * @throws \ServiceBus\MessagesRouter\Exceptions\InvalidEventClassSpecified
      */
@@ -112,22 +109,20 @@ final class Router implements \Countable
     {
         $eventClass = \is_object($event) ? \get_class($event) : $event;
 
-        if ($eventClass !== '' && \class_exists($eventClass))
+        if (\class_exists($eventClass) === false)
         {
-            $this->listeners[$eventClass][] = $handler;
-            $this->listenersCount++;
-
-            return;
+            throw InvalidEventClassSpecified::wrongEventClass();
         }
 
-        throw InvalidEventClassSpecified::wrongEventClass();
+        $this->listeners[$eventClass][] = $handler;
+        $this->listenersCount++;
     }
 
     /**
      * Register command handler
      * For 1 command there can be only 1 handler.
      *
-     * @param object|string $command Command object or class
+     * @psalm-param object|class-string $command Command object or class
      *
      * @throws \ServiceBus\MessagesRouter\Exceptions\InvalidCommandClassSpecified
      * @throws \ServiceBus\MessagesRouter\Exceptions\MultipleCommandHandlersNotAllowed
@@ -136,7 +131,7 @@ final class Router implements \Countable
     {
         $commandClass = \is_object($command) ? \get_class($command) : $command;
 
-        if ($commandClass === '' || \class_exists($commandClass) === false)
+        if (\class_exists($commandClass) === false)
         {
             throw InvalidCommandClassSpecified::wrongCommandClass();
         }
