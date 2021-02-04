@@ -29,7 +29,7 @@
   },
   "require": {
     "php": ">=8.0",
-    "php-service-bus/common": "v4.2.*"
+    "php-service-bus/common": "v5.0.*"
   },
   "require-dev": {
     "php-service-bus/code-style-config": "v1.3.*",

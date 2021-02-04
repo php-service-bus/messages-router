@@ -3,7 +3,7 @@
 [![Packagist](https://img.shields.io/packagist/v/php-service-bus/messages-router.svg)](https://packagist.org/packages/php-service-bus/messages-router)
 [![Packagist](https://img.shields.io/packagist/dt/php-service-bus/messages-router.svg)](https://packagist.org/packages/php-service-bus/messages-router)
 ![Continuous Integration](https://github.com/php-service-bus/messages-router/workflows/Continuous%20Integration/badge.svg)
-[![codecov](https://codecov.io/gh/php-service-bus/messages-router/branch/v4.2/graph/badge.svg?token=0bKwdiuo0S)](https://codecov.io/gh/php-service-bus/messages-router)
+[![codecov](https://codecov.io/gh/php-service-bus/messages-router/branch/v5.0/graph/badge.svg?token=0bKwdiuo0S)](https://codecov.io/gh/php-service-bus/messages-router)
 [![Shepherd](https://shepherd.dev/github/php-service-bus/messages-router/coverage.svg)](https://shepherd.dev/github/php-service-bus/messages-router)
 
 This component is part of the [PHP Service Bus](https://github.com/php-service-bus/service-bus): implementation of message routing
