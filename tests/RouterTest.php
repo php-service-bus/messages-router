@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection PhpUnhandledExceptionInspection */
 
 /**
  * Messages router component.
@@ -30,8 +30,6 @@ final class RouterTest extends TestCase
 {
     /**
      * @test
-     *
-     * @throws \Throwable
      */
     public function emptyEventClass(): void
     {
@@ -43,8 +41,6 @@ final class RouterTest extends TestCase
 
     /**
      * @test
-     *
-     * @throws \Throwable
      */
     public function unExistsEventClass(): void
     {
@@ -56,8 +52,6 @@ final class RouterTest extends TestCase
 
     /**
      * @test
-     *
-     * @throws \Throwable
      */
     public function emptyCommandClass(): void
     {
@@ -69,8 +63,6 @@ final class RouterTest extends TestCase
 
     /**
      * @test
-     *
-     * @throws \Throwable
      */
     public function unExistsCommandClass(): void
     {
@@ -82,8 +74,6 @@ final class RouterTest extends TestCase
 
     /**
      * @test
-     *
-     * @throws \Throwable
      */
     public function duplicateCommand(): void
     {
@@ -103,8 +93,6 @@ final class RouterTest extends TestCase
 
     /**
      * @test
-     *
-     * @throws \Throwable
      */
     public function successRegister(): void
     {

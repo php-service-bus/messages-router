@@ -22,9 +22,6 @@ use ServiceBus\Common\MessageExecutor\MessageExecutor;
  */
 final class DefaultMessageExecutor implements MessageExecutor
 {
-    /**
-     * {@inheritdoc}
-     */
     public function __invoke(object $message, ServiceBusContext $context): Promise
     {
         return new Success();
