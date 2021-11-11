@@ -3,7 +3,7 @@
          backupStaticAttributes="false" beStrictAboutTestsThatDoNotTestAnything="false" colors="true" verbose="true"
          convertErrorsToExceptions="true" convertNoticesToExceptions="true" convertWarningsToExceptions="true"
          failOnRisky="true" failOnWarning="true" stopOnFailure="false"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd">
     <coverage>
         <include>
             <directory>./src</directory>
