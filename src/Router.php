@@ -25,7 +25,7 @@ final class Router implements \Countable
     /**
      * Event listeners.
      *
-     * @psalm-var array<string, array<class-string|int, \ServiceBus\Common\MessageExecutor\MessageExecutor>>
+     * @psalm-var array<class-string, array<array-key, \ServiceBus\Common\MessageExecutor\MessageExecutor>>
      *
      * @var MessageExecutor[][]
      */

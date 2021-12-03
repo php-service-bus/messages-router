@@ -18,7 +18,7 @@ namespace ServiceBus\MessagesRouter;
 final class ChainRouterConfigurator implements RouterConfigurator
 {
     /**
-     * @psalm-var \SplObjectStorage<RouterConfigurator, mixed>
+     * @psalm-var \SplObjectStorage<RouterConfigurator, null>
      *
      * @var \SplObjectStorage
      */
@@ -26,7 +26,7 @@ final class ChainRouterConfigurator implements RouterConfigurator
 
     public function __construct()
     {
-        /** @psalm-var \SplObjectStorage<RouterConfigurator, mixed> $configurators */
+        /** @psalm-var \SplObjectStorage<RouterConfigurator, null> $configurators */
         $configurators = new \SplObjectStorage();
 
         $this->configurators = $configurators;

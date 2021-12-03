@@ -12,9 +12,6 @@ declare(strict_types=0);
 
 namespace ServiceBus\MessagesRouter\Exceptions;
 
-/**
- *
- */
 final class InvalidEventClassSpecified extends \LogicException
 {
     public static function wrongEventClass(): self

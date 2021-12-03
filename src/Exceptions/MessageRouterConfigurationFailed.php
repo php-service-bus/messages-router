@@ -12,9 +12,6 @@ declare(strict_types=0);
 
 namespace ServiceBus\MessagesRouter\Exceptions;
 
-/**
- *
- */
 final class MessageRouterConfigurationFailed extends \RuntimeException
 {
     public static function fromThrowable(\Throwable $throwable): self

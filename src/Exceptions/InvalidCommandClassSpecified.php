@@ -12,9 +12,6 @@ declare(strict_types=0);
 
 namespace ServiceBus\MessagesRouter\Exceptions;
 
-/**
- *
- */
 final class InvalidCommandClassSpecified extends \LogicException
 {
     public static function wrongCommandClass(): self
