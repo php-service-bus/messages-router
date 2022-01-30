@@ -78,7 +78,7 @@ final class Router implements \Countable
     /**
      * @param object $message
      *
-     * @psalm-return list<\ServiceBus\Common\MessageExecutor\MessageExecutor>
+     * @psalm-return array<array-key, \ServiceBus\Common\MessageExecutor\MessageExecutor>
      */
     public function match(object $message): array
     {
