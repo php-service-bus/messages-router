@@ -14,6 +14,8 @@ namespace ServiceBus\MessagesRouter;
 
 /**
  * Chaim routing configurator.
+ *
+ * @codeCoverageIgnore
  */
 final class ChainRouterConfigurator implements RouterConfigurator
 {
