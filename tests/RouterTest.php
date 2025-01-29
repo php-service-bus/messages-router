@@ -38,7 +38,7 @@ final class RouterTest extends TestCase
         $this->expectException(InvalidEventClassSpecified::class);
         $this->expectExceptionMessage('The event class is not specified, or does not exist');
 
-        (new Router())->registerListener('', new  DefaultMessageExecutor());
+        (new Router())->registerListener('', new DefaultMessageExecutor());
     }
 
     /**

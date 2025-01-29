@@ -43,14 +43,14 @@ final class Router implements \Countable
     /**
      * Event listeners count.
      *
-     * @var int
+     * @var int<0, max>
      */
     private $listenersCount = 0;
 
     /**
      * Command handlers count.
      *
-     * @var int
+     * @var int<0, max>
      */
     private $handlersCount = 0;
 
@@ -84,13 +84,11 @@ final class Router implements \Countable
     {
         $messageClass = \get_class($message);
 
-        if (isset($this->listeners[$messageClass]))
-        {
+        if (isset($this->listeners[$messageClass])) {
             return $this->listeners[$messageClass];
         }
 
-        if (isset($this->handlers[$messageClass]))
-        {
+        if (isset($this->handlers[$messageClass])) {
             return [$this->handlers[$messageClass]];
         }
 
@@ -109,8 +107,7 @@ final class Router implements \Countable
     {
         $eventClass = \is_object($event) ? \get_class($event) : $event;
 
-        if (\class_exists($eventClass) === false)
-        {
+        if (\class_exists($eventClass) === false) {
             throw InvalidEventClassSpecified::wrongEventClass();
         }
 
@@ -131,13 +128,11 @@ final class Router implements \Countable
     {
         $commandClass = \is_object($command) ? \get_class($command) : $command;
 
-        if (\class_exists($commandClass) === false)
-        {
+        if (\class_exists($commandClass) === false) {
             throw InvalidCommandClassSpecified::wrongCommandClass();
         }
 
-        if (isset($this->handlers[$commandClass]))
-        {
+        if (isset($this->handlers[$commandClass])) {
             throw MultipleCommandHandlersNotAllowed::duplicate($commandClass);
         }
 
